@@ -1,0 +1,114 @@
+diff --git a/latentsync/pipelines/lipsync_pipeline.py b/latentsync/pipelines/lipsync_pipeline.py
+index 693155e..327d4a0 100644
+--- a/latentsync/pipelines/lipsync_pipeline.py
++++ b/latentsync/pipelines/lipsync_pipeline.py
+@@ -268,6 +268,7 @@ class LipsyncPipeline(DiffusionPipeline):
+         out_frames = []
+         print(f"Restoring {len(faces)} faces...")
+         for index, face in enumerate(tqdm.tqdm(faces)):
++            face = face.to(self.image_processor.restorer.device)
+             x1, y1, x2, y2 = boxes[index]
+             height = int(y2 - y1)
+             width = int(x2 - x1)
+@@ -386,6 +387,7 @@ class LipsyncPipeline(DiffusionPipeline):
+ 
+         num_inferences = math.ceil(len(whisper_chunks) / num_frames)
+         for i in tqdm.tqdm(range(num_inferences), desc="Doing inference..."):
++            self._avatar_chunk_index = i
+             if self.unet.add_audio_layer:
+                 audio_embeds = torch.stack(whisper_chunks[i * num_frames : (i + 1) * num_frames])
+                 audio_embeds = audio_embeds.to(device, dtype=weight_dtype)
+@@ -421,6 +423,24 @@ class LipsyncPipeline(DiffusionPipeline):
+                 do_classifier_free_guidance,
+             )
+ 
++            # Resume only explicitly configured local decoded-chunk caches.
++            # VAE preparation above still advances RNG exactly as in a fresh run.
++            cache_dir = getattr(self, "avatar_chunk_cache", None)
++            cache_path = os.path.join(cache_dir, f"{i:04d}.npz") if cache_dir else None
++            if cache_path and os.path.isfile(cache_path):
++                decoded_latents = torch.from_numpy(np.load(cache_path)["faces"]).to(device)
++                decoded_latents = self.paste_surrounding_pixels_back(
++                    decoded_latents, ref_pixel_values, 1 - masks, device, weight_dtype
++                )
++                synced_video_frames.append(decoded_latents.cpu())
++                del decoded_latents
++                if device.type == "mps":
++                    torch.mps.empty_cache()
++                continue
++
++            if device.type == "mps":
++                torch.mps.empty_cache()
++
+             # 9. Denoising loop
+             num_warmup_steps = len(timesteps) - num_inference_steps * self.scheduler.order
+             with self.progress_bar(total=num_inference_steps) as progress_bar:
+@@ -434,7 +454,13 @@ class LipsyncPipeline(DiffusionPipeline):
+                     unet_input = torch.cat([unet_input, mask_latents, masked_image_latents, ref_latents], dim=1)
+ 
+                     # predict the noise residual
+-                    noise_pred = self.unet(unet_input, t, encoder_hidden_states=audio_embeds).sample
++                    if unet_input.device.type == 'mps' and do_classifier_free_guidance:
++                        audio_mid = audio_embeds.shape[0] // 2
++                        uncond = self.unet(unet_input[:1], t, encoder_hidden_states=audio_embeds[:audio_mid]).sample
++                        cond = self.unet(unet_input[1:], t, encoder_hidden_states=audio_embeds[audio_mid:]).sample
++                        noise_pred = torch.cat([uncond, cond])
++                    else:
++                        noise_pred = self.unet(unet_input, t, encoder_hidden_states=audio_embeds).sample
+ 
+                     # perform guidance
+                     if do_classifier_free_guidance:
+@@ -455,7 +481,11 @@ class LipsyncPipeline(DiffusionPipeline):
+             decoded_latents = self.paste_surrounding_pixels_back(
+                 decoded_latents, ref_pixel_values, 1 - masks, device, weight_dtype
+             )
+-            synced_video_frames.append(decoded_latents)
++            # Keep completed frames off the GPU; otherwise memory grows per chunk.
++            synced_video_frames.append(decoded_latents.cpu())
++            del decoded_latents
++            if device.type == "mps":
++                torch.mps.empty_cache()
+ 
+         synced_video_frames = self.restore_video(torch.cat(synced_video_frames), video_frames, boxes, affine_matrices)
+ 
+@@ -473,5 +503,10 @@ class LipsyncPipeline(DiffusionPipeline):
+ 
+         sf.write(os.path.join(temp_dir, "audio.wav"), audio_samples, audio_sample_rate)
+ 
+-        command = f"ffmpeg -y -loglevel error -nostdin -i {os.path.join(temp_dir, 'video.mp4')} -i {os.path.join(temp_dir, 'audio.wav')} -c:v libx264 -crf 18 -c:a aac -q:v 0 -q:a 0 {video_out_path}"
+-        subprocess.run(command, shell=True)
++        subprocess.run([
++            "ffmpeg", "-y", "-loglevel", "error", "-nostdin",
++            "-i", os.path.join(temp_dir, "video.mp4"),
++            "-i", os.path.join(temp_dir, "audio.wav"),
++            "-c:v", "libx264", "-crf", "18", "-c:a", "aac",
++            "-q:v", "0", "-q:a", "0", video_out_path,
++        ], check=True)
+diff --git a/latentsync/utils/util.py b/latentsync/utils/util.py
+index 6aa9ab3..a604090 100644
+--- a/latentsync/utils/util.py
++++ b/latentsync/utils/util.py
+@@ -28,7 +28,6 @@ from torchvision import transforms
+ 
+ from einops import rearrange
+ import cv2
+-from decord import AudioReader, VideoReader
+ import shutil
+ import subprocess
+ 
+@@ -64,6 +63,7 @@ def read_video(video_path: str, change_fps=True, use_decord=True):
+ 
+ 
+ def read_video_decord(video_path: str):
++    from decord import VideoReader
+     vr = VideoReader(video_path)
+     video_frames = vr[:].asnumpy()
+     vr.seek(0)
+@@ -103,6 +103,7 @@ def read_video_cv2(video_path: str):
+ def read_audio(audio_path: str, audio_sample_rate: int = 16000):
+     if audio_path is None:
+         raise ValueError("Audio path is required.")
++    from decord import AudioReader
+     ar = AudioReader(audio_path, sample_rate=audio_sample_rate, mono=True)
+ 
+     # To access the audio samples

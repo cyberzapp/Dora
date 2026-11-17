@@ -1,0 +1,22 @@
+{
+  "repository": "Lightricks/LTX-2",
+  "revision": "4f521619ae0029e8fbb64d555030c2b121a33b4f",
+  "path": "packages/ltx-pipelines/src/ltx_pipelines/dubit.py",
+  "sha256": "47b963c712c21532f6d6721a08e1104f411f80fb3d135cb90f7b203570fe4251",
+  "retrieved_utc": "2026-11-08",
+  "used_for": "Source comparison only; not installed or executed",
+  "url": "https://raw.githubusercontent.com/Lightricks/LTX-2/4f521619ae0029e8fbb64d555030c2b121a33b4f/packages/ltx-pipelines/src/ltx_pipelines/dubit.py",
+  "default_audio_conditioning": "reference",
+  "experimental_audio_conditioning": "frozen-target",
+  "exported_audio": "Original decoded voice-over in both modes",
+  "official_base_recipe": "Distilled schedule; IC-LoRA retained in both stages",
+  "official_audio_recipe": "Stage 1 jointly generates audio from appended source-audio references; stage 2 freezes stage-1 audio",
+  "local_changes": [
+    "Pre-encode identical real-camera references before transformer loading",
+    "Stage text encoder and connector to bound memory",
+    "Reuse encoded source speech from the prepared voice-over",
+    "Export original audio instead of reconstructed generated audio"
+  ],
+  "experiments_executed": false,
+  "quality_passed": false
+}

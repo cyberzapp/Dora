@@ -1,0 +1,138 @@
+{
+  "1": {
+    "class_type": "LoadImage",
+    "inputs": {
+      "image": "AvatarStudio_Portrait_BlackT.png"
+    }
+  },
+  "2": {
+    "class_type": "AvatarStudioLoadPerformance",
+    "inputs": {
+      "video_path": "/path/to/your/local/media/my_video.mp4",
+      "seconds": 2
+    }
+  },
+  "3": {
+    "class_type": "DownloadAndLoadLivePortraitModels",
+    "inputs": {
+      "precision": "fp32",
+      "mode": "human"
+    }
+  },
+  "4": {
+    "class_type": "LivePortraitLoadMediaPipeCropper",
+    "inputs": {
+      "landmarkrunner_onnx_device": "CPU",
+      "keep_model_loaded": true
+    }
+  },
+  "5": {
+    "class_type": "LivePortraitCropper",
+    "inputs": {
+      "source_image": [
+        "1",
+        0
+      ],
+      "pipeline": [
+        "3",
+        0
+      ],
+      "cropper": [
+        "4",
+        0
+      ],
+      "dsize": 512,
+      "scale": 2.3,
+      "vx_ratio": 0,
+      "vy_ratio": -0.125,
+      "face_index": 0,
+      "face_index_order": "large-small",
+      "rotate": true
+    }
+  },
+  "6": {
+    "class_type": "LivePortraitCropper",
+    "inputs": {
+      "source_image": [
+        "2",
+        0
+      ],
+      "pipeline": [
+        "3",
+        0
+      ],
+      "cropper": [
+        "4",
+        0
+      ],
+      "dsize": 512,
+      "scale": 2.3,
+      "vx_ratio": 0,
+      "vy_ratio": -0.125,
+      "face_index": 0,
+      "face_index_order": "large-small",
+      "rotate": true
+    }
+  },
+  "8": {
+    "class_type": "LivePortraitProcess",
+    "inputs": {
+      "pipeline": [
+        "3",
+        0
+      ],
+      "crop_info": [
+        "5",
+        1
+      ],
+      "source_image": [
+        "1",
+        0
+      ],
+      "driving_images": [
+        "6",
+        0
+      ],
+      "lip_zero": true,
+      "lip_zero_threshold": 0.03,
+      "stitching": true,
+      "delta_multiplier": 1,
+      "mismatch_method": "constant",
+      "relative_motion_mode": "relative",
+      "driving_smooth_observation_variance": 3e-06,
+      "expression_friendly": false,
+      "expression_friendly_multiplier": 1
+    }
+  },
+  "9": {
+    "class_type": "LivePortraitComposite",
+    "inputs": {
+      "source_image": [
+        "1",
+        0
+      ],
+      "cropped_image": [
+        "8",
+        0
+      ],
+      "liveportrait_out": [
+        "8",
+        1
+      ]
+    }
+  },
+  "10": {
+    "class_type": "AvatarStudioSavePerformance",
+    "inputs": {
+      "images": [
+        "9",
+        0
+      ],
+      "original_video": [
+        "2",
+        1
+      ],
+      "filename_prefix": "Suman_LivePortraitKJ"
+    }
+  }
+}

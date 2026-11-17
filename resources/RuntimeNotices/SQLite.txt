@@ -1,0 +1,8 @@
+SQLite
+
+SQLite's authors dedicate its deliverable code and documentation to the public domain.
+Official statement: https://www.sqlite.org/copyright.html
+Checked: 2026-11-06
+
+This notice records the upstream statement; it does not replace a review of the
+other dependencies included in Avatar Studio.

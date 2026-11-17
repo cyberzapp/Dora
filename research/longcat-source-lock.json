@@ -1,0 +1,24 @@
+{
+  "repo": "https://github.com/xocialize/longcat-avatar-mlx",
+  "revision": "e2e1e8701424cef0e601281b62e228e5289ed032",
+  "files": {
+    "longcat_video_avatar/__init__.py": "1987b8687da4942c434237d73768ee30fd6b0f5d791c205005f691e9f80f9976",
+    "longcat_video_avatar/audio_process.py": "97465618362cff9af001ad5825720bd043712ed31b26599ddcf8a0d3db8dcee8",
+    "longcat_video_avatar/guidance.py": "7ce7ca3b147a16c55c2768aa0e43272aab3b9d7efdad60279625a9e985b22cb7",
+    "longcat_video_avatar/lora.py": "512866f8392b98903b411d752b5a8a7fe9ce7d6fcfb0c11cf8892ede483d77e3",
+    "longcat_video_avatar/models/__init__.py": "c61137b4bce94b61b3826478987d952fa424e40d4e5c7d0dfba83653bccef7d0",
+    "longcat_video_avatar/models/attention.py": "1f71adbca8a93ea6cbdac2012be1e9202d656e0d68cdf2f53a43596f6062838c",
+    "longcat_video_avatar/models/autoencoder_kl_wan.py": "d01e2a64ab03035d8838e05127bf44ba7dbdc7c04b599091142da70053266f5e",
+    "longcat_video_avatar/models/avatar/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "longcat_video_avatar/models/avatar/attention.py": "40450f72d7c9dc62da81e1b01bf2c50b50f17d00587ae732d1a9f951091519e9",
+    "longcat_video_avatar/models/avatar/blocks.py": "d1da0b8d9f74b7609a3f431320c06444f6a867e6750cc2d03386c24973411756",
+    "longcat_video_avatar/models/avatar/longcat_video_dit_avatar.py": "818420c71df0b0aa8435d7bae218c5ffbe95ad1ae9a8c13ce302e70fe37a6587",
+    "longcat_video_avatar/models/blocks.py": "3b2f288261230cc18085fd7d4c78058e1e6149f756d822b181612e5db50de761",
+    "longcat_video_avatar/models/longcat_video_dit.py": "8fd1f4573cafdb36e85daba73e4e97a5caad3f2fd7227174d092e8b42caa8be7",
+    "longcat_video_avatar/models/rope_3d.py": "16f80f38fc7c90bd8288808e2af8611ae75e06b39959d0bfe9cffff1c40a1bb8",
+    "longcat_video_avatar/models/umt5.py": "65bc3705e9eb89ba9bd115ad3a6f523ad8c2b718318791855b07a0765454ae50",
+    "longcat_video_avatar/models/whisper.py": "e34a68866271e6aaebedeefb6af1f08bf29e5aec47c0d3ccec5011b8bbcad292",
+    "longcat_video_avatar/pipeline_mlx.py": "76909092be7c3cb3e0bac104907679609bf70e5931d99885f80a27a0d3c0bbff",
+    "longcat_video_avatar/utils/__init__.py": "1647df4203cef4096cb99f95808a6b0ed255c400411be083c214a245b3835b3b"
+  }
+}

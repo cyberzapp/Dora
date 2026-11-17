@@ -1,0 +1,26 @@
+{
+  "repo": "Soul-AILab/SoulX-FlashHead-1_3B",
+  "revision": "5fbd2e44ba08ab2deb28bd55cff2c15523e51ba5",
+  "files": [
+    {
+      "path": "Model_Pro/config.json",
+      "bytes": 353,
+      "sha256": "94b480d3af70e73989371ed0c106656c2c887201286b1210e835cd09e71e32b1"
+    },
+    {
+      "path": "Model_Pro/diffusion_pytorch_model.safetensors",
+      "bytes": 6030864656,
+      "sha256": "e47e61b9023ea1aac60c0c0fff077289bc6cca443c71907e5a76a411480af250"
+    },
+    {
+      "path": "README.md",
+      "bytes": 8872,
+      "sha256": "46eb2fde0cdaf249e8b6aeacfd84f12e5b2c4a32af0cd61054fbaea380619979"
+    },
+    {
+      "path": "VAE_Wan/Wan2.1_VAE.pth",
+      "bytes": 507609880,
+      "sha256": "38071ab59bd94681c686fa51d75a1968f64e470262043be31f7a094e442fd981"
+    }
+  ]
+}

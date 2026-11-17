@@ -1,0 +1,111 @@
+{
+  "repo": "mlx-community/LongCat-Video-Avatar-1.5-q4-dmd-merged",
+  "revision": "5d5b5d61ce6c206930a94c760f6941aff03f9389",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 1580,
+      "sha256": null
+    },
+    {
+      "path": "README.md",
+      "bytes": 2631,
+      "sha256": null
+    },
+    {
+      "path": "audio_encoder/config.json",
+      "bytes": 1272,
+      "sha256": null
+    },
+    {
+      "path": "audio_encoder/model.safetensors",
+      "bytes": 1273988103,
+      "sha256": "98c4d9383b36b2680ffb2c23cb151ec40b2ecb5cd88d015b4c9eeb2f5e6c49f4"
+    },
+    {
+      "path": "dit/config.json",
+      "bytes": 1106,
+      "sha256": null
+    },
+    {
+      "path": "dit/diffusion_pytorch_model-00001-of-00003.safetensors",
+      "bytes": 5364289907,
+      "sha256": "cc3097b4bd1355c7cbbb4e327e0d8170060fe21c41263a60c78960b7b5fbdeea"
+    },
+    {
+      "path": "dit/diffusion_pytorch_model-00002-of-00003.safetensors",
+      "bytes": 5368676409,
+      "sha256": "8998e1195fcc4b00daf13237a91b5ca417750bb412a6ae5d4f631d7f2bb27218"
+    },
+    {
+      "path": "dit/diffusion_pytorch_model-00003-of-00003.safetensors",
+      "bytes": 1373574532,
+      "sha256": "91b48ab3a5caa0598fe5b325999e4ea50ae9d527afb98db0a9b9d0a0f76ab1f7"
+    },
+    {
+      "path": "dit/diffusion_pytorch_model.safetensors.index.json",
+      "bytes": 252497,
+      "sha256": null
+    },
+    {
+      "path": "pipeline_config.json",
+      "bytes": 286,
+      "sha256": null
+    },
+    {
+      "path": "scheduler/scheduler_config.json",
+      "bytes": 213,
+      "sha256": null
+    },
+    {
+      "path": "text_encoder/config.json",
+      "bytes": 854,
+      "sha256": null
+    },
+    {
+      "path": "text_encoder/model-00001-of-00003.safetensors",
+      "bytes": 5355262750,
+      "sha256": "1fd77f642f83e4a0fb45113b5699b28eb619bdb9298d7016c7e617c7f50a523a"
+    },
+    {
+      "path": "text_encoder/model-00002-of-00003.safetensors",
+      "bytes": 5335447316,
+      "sha256": "931572113c2377e77d0e2111dac0f4b32d3eb5d350566dc1b20e8f7555e8e777"
+    },
+    {
+      "path": "text_encoder/model-00003-of-00003.safetensors",
+      "bytes": 671135411,
+      "sha256": "c4b520e7d61ef20bf74674cd3f3edb9038ba8f257c8355f3121e2801a2a6869b"
+    },
+    {
+      "path": "text_encoder/model.safetensors.index.json",
+      "bytes": 16752,
+      "sha256": null
+    },
+    {
+      "path": "tokenizer/special_tokens_map.json",
+      "bytes": 7079,
+      "sha256": null
+    },
+    {
+      "path": "tokenizer/tokenizer.json",
+      "bytes": 16837459,
+      "sha256": "20a46ac256746594ed7e1e3ef733b83fbc5a6f0922aa7480eda961743de080ef"
+    },
+    {
+      "path": "tokenizer/tokenizer_config.json",
+      "bytes": 61758,
+      "sha256": null
+    },
+    {
+      "path": "vae/config.json",
+      "bytes": 724,
+      "sha256": null
+    },
+    {
+      "path": "vae/diffusion_pytorch_model.safetensors",
+      "bytes": 253806970,
+      "sha256": "8a176c483e04f38e2886aece4f8354f7b00665f7dd7e3dce6a733a4a2c65fa07"
+    }
+  ]
+}

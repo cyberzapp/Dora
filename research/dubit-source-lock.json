@@ -1,0 +1,17 @@
+{
+  "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-DubIt",
+  "revision": "cc18226c909e87aa8a1a079896ad46a4ec01e4d1",
+  "files": [
+    {
+      "path": "ltx-2.3-22b-ic-lora-dubit-0.9.safetensors",
+      "bytes": 2466665072,
+      "sha256": "fc415b12cb639e78511bc264f85080c2f7b188e334c1d9fade76b310e2bc419c"
+    }
+  ],
+  "license": "ltx-2-community-license",
+  "access": "Official weights require user-reviewed gated download; no credentials stored or terms accepted by this tool",
+  "base_source_lock": "research/ltx-source-lock.json",
+  "training_performed": false,
+  "compatibility_verified": false,
+  "quality_passed": false
+}

@@ -1,0 +1,10 @@
+.build/
+.venv*/
+vendor/
+dist/
+__pycache__/
+*.pyc
+.DS_Store
+.local/
+/HQvideo.mp4
+/video_HQ.mp4

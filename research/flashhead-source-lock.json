@@ -1,0 +1,87 @@
+{
+  "repository": "Soul-AILab/SoulX-FlashHead",
+  "commit": "9bc03de06bb0de82cd6bc477804512ae06144bf2",
+  "archive_sha256": "f4f8db95a39b04c4ae2f3a5b227f558c4e9128ca930b0f79f81cb2c3fb4dc955",
+  "model_revision": "5fbd2e44ba08ab2deb28bd55cff2c15523e51ba5",
+  "license": "other",
+  "files": [
+    {
+      "path": "Model_Pro/config.json",
+      "size": 353,
+      "lfs": null
+    },
+    {
+      "path": "Model_Pro/diffusion_pytorch_model.safetensors",
+      "size": 6030864656,
+      "lfs": {
+        "sha256": "e47e61b9023ea1aac60c0c0fff077289bc6cca443c71907e5a76a411480af250",
+        "size": 6030864656,
+        "pointerSize": 135
+      }
+    },
+    {
+      "path": "README.md",
+      "size": 8872,
+      "lfs": null
+    },
+    {
+      "path": "VAE_Wan/Wan2.1_VAE.pth",
+      "size": 507609880,
+      "lfs": {
+        "sha256": "38071ab59bd94681c686fa51d75a1968f64e470262043be31f7a094e442fd981",
+        "size": 507609880,
+        "pointerSize": 134
+      }
+    }
+  ],
+  "model_component_licenses": {
+    "transformer": "Apache-2.0",
+    "VAE_Wan": "Apache-2.0",
+    "wav2vec2-base-960h": "Apache-2.0"
+  },
+  "license_source": "https://huggingface.co/Soul-AILab/SoulX-FlashHead-1_3B/blob/5fbd2e44ba08ab2deb28bd55cff2c15523e51ba5/README.md",
+  "audio_manifest": {
+    "repo": "facebook/wav2vec2-base-960h",
+    "revision": "22aad52d435eb6dbaf354bdad9b0da84ce7d6156",
+    "files": [
+      {
+        "path": "config.json",
+        "bytes": 1596,
+        "sha256": null
+      },
+      {
+        "path": "model.safetensors",
+        "bytes": 377607901,
+        "sha256": "8aa76ab2243c81747a1f832954586bc566090c83a0ac167df6f31f0fa917d74a"
+      },
+      {
+        "path": "preprocessor_config.json",
+        "bytes": 159,
+        "sha256": null
+      },
+      {
+        "path": "special_tokens_map.json",
+        "bytes": 85,
+        "sha256": null
+      },
+      {
+        "path": "tokenizer_config.json",
+        "bytes": 163,
+        "sha256": null
+      },
+      {
+        "path": "vocab.json",
+        "bytes": 291,
+        "sha256": null
+      }
+    ]
+  },
+  "vendor_files": {
+    "flash_head/src/modules/flash_head_model.py": "1617499fef5bab4520fa8cc9350545b160e61e43cd315067f8fe7f6f31bc8ca4",
+    "flash_head/wan/modules/vae.py": "7071d15350f30eed21a363c624e36c646ae8f7ec81303b83575dcf63bfbc49eb",
+    "flash_head/audio_analysis/wav2vec2.py": "c30cb3548889e52542d63e91b0301599f3dead5de97b7b69e144aa6232fa9476",
+    "flash_head/audio_analysis/torch_utils.py": "5a523b78211a64d7efd838cc000c6251184de2a37c73614e2581faa5d09378cb",
+    "flash_head/utils/utils.py": "1b385b6c71eef4ded0875cf90a1552f639ac42182bb71de7ee32592257e8e094",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  }
+}
